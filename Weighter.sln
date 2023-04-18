@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weighter", "Weighter\Weighter\Weighter.csproj", "{B30A4640-9C34-4712-8492-9E2DDCB80EDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weighter.Tests", "Weighter.Tests\Weighter.Tests.csproj", "{9F0157E5-4AAD-4C7D-BF29-70D75DA581D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B30A4640-9C34-4712-8492-9E2DDCB80EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B30A4640-9C34-4712-8492-9E2DDCB80EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B30A4640-9C34-4712-8492-9E2DDCB80EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B30A4640-9C34-4712-8492-9E2DDCB80EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0157E5-4AAD-4C7D-BF29-70D75DA581D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0157E5-4AAD-4C7D-BF29-70D75DA581D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0157E5-4AAD-4C7D-BF29-70D75DA581D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0157E5-4AAD-4C7D-BF29-70D75DA581D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

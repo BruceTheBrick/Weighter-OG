@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-android;net6.0-ios;</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>Weighter</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <!-- Display name -->
+        <ApplicationTitle>Weighter</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.weighter</ApplicationId>
+        <ApplicationIdGuid>3CF8F0AC-04DA-49BB-B747-E97A2874A67F</ApplicationIdGuid>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+        <LangVersion>11</LangVersion>
+        <IsPackable>false</IsPackable>
+        <Title>Weighter</Title>
+        <Authors>Bryce Lynch</Authors>
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- App Icon -->
+
+        <!-- Splash Screen -->
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+        <MauiImage Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Weighter.csproj.DotSettings" />
+      <None Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiIcon Include="Resources\Images\appicon.svg">
+        <ForegroundFile>Resources/AppIcon/appiconfg.svg</ForegroundFile>
+        <Color>#FFFFFF</Color>
+      </MauiIcon>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiSplashScreen Include="Resources\Images\splash.svg">
+        <Color>#FFFFFF</Color>
+      </MauiSplashScreen>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiCss Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+</Project>
