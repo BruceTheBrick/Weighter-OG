@@ -1,6 +1,5 @@
 ﻿using Weighter.Core;
 using Weighter.Features;
-using Weighter.Features.SplashPage;
 using DeviceInfo = Weighter.Core.DeviceInfo;
 using IDeviceInfo = Weighter.Core.IDeviceInfo;
 using INavigationService = Weighter.Core.INavigationService;

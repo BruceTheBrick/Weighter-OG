@@ -35,8 +35,14 @@
 
     <ItemGroup>
         <!-- App Icon -->
+        <MauiIcon Include="Resources\Images\AppIcon\appicon.svg">
+          <Color>#FFFFFF</Color>
+        </MauiIcon>
 
         <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Images\splash.svg">
+          <Color>#FFFFFF</Color>
+        </MauiSplashScreen>
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -59,19 +65,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiIcon Include="Resources\Images\appicon.svg">
-        <ForegroundFile>Resources/AppIcon/appiconfg.svg</ForegroundFile>
-        <Color>#FFFFFF</Color>
-      </MauiIcon>
-    </ItemGroup>
-
-    <ItemGroup>
-      <MauiSplashScreen Include="Resources\Images\splash.svg">
-        <Color>#FFFFFF</Color>
-      </MauiSplashScreen>
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="Resources\Images\Old\**" />
     </ItemGroup>
 
@@ -85,6 +78,10 @@
 
     <ItemGroup>
       <MauiCss Remove="Resources\Images\Old\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Images\AppIcon" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace Weighter.Features.SplashPage
+namespace Weighter.Features
 {
     public partial class SplashPage
     {

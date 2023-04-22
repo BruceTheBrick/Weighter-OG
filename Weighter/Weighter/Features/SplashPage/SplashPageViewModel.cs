@@ -1,21 +1,18 @@
-using System.Windows.Input;
 using Weighter.Core;
 
-namespace Weighter.Features.SplashPage
+namespace Weighter.Features
 {
     public class SplashPageViewModel : BasePageViewModel
     {
         public SplashPageViewModel(IBaseService baseService)
             : base(baseService)
         {
-            NavigateToDashboardCommand = new Command(async => NavigationService.NavigateAsync(nameof(DashboardPage)));
         }
 
-        public ICommand NavigateToDashboardCommand { get; }
-
-        public override Task InitializeAsync(INavigationParameters parameters)
+        public override async Task OnNavigatedToAsync(INavigationParameters parameters)
         {
-            return base.InitializeAsync(parameters);
+            await base.OnNavigatedToAsync(parameters);
+            await NavigationService.NavigateAsync($"/{nameof(DashboardPage)}");
         }
     }
 }

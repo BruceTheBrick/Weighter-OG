@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Weighter.Features.SplashPage.SplashPage"
+    x:Class="Weighter.Features.SplashPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:splashPage="clr-namespace:Weighter.Features.SplashPage"
-    x:DataType="splashPage:SplashPageViewModel">
+    xmlns:features="clr-namespace:Weighter.Features"
+    x:DataType="features:SplashPageViewModel">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="This is my splash screen" />
-        <Button Command="{Binding NavigateToDashboardCommand}" Text="Navigate" />
+        <ActivityIndicator
+            HorizontalOptions="Center"
+            IsRunning="True"
+            VerticalOptions="Center" />
     </StackLayout>
 </ContentPage>

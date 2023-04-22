@@ -1,10 +1,9 @@
-using Weighter.Features.SplashPage;
+using Weighter.Features;
 
 namespace Weighter.Core
 {
     public static class NavigationConstants
     {
-        public const string DashboardPage = nameof(DashboardPage);
         public const string Startup = $"{nameof(SplashPage)}";
     }
 }

@@ -5,5 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Weighter.Features"
     x:DataType="features:DashboardPageViewModel">
-    <Label Text="Hello there!" />
+    <StackLayout HorizontalOptions=" Center" VerticalOptions="Center">
+        <Label Text="Hello there!" />
+        <Entry />
+    </StackLayout>
 </ContentPage>
