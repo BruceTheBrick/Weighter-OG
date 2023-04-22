@@ -5,10 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Weighter.Features"
     x:DataType="features:SplashPageViewModel">
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <ActivityIndicator
-            HorizontalOptions="Center"
-            IsRunning="True"
-            VerticalOptions="Center" />
-    </StackLayout>
+    <Grid>
+        <ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
+    </Grid>
 </ContentPage>
