@@ -32,11 +32,17 @@ namespace Weighter
 
         private static void RegisterServices(IContainerRegistry containerRegistry)
         {
+            RegisterSingletonServices(containerRegistry);
             containerRegistry.Register<IBaseService, BaseService>();
             containerRegistry.Register<INavigationService, NavigationService>();
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
             containerRegistry.Register<IDeviceInfo, DeviceInfo>();
             containerRegistry.Register<ITaskDelay, TaskDelay>();
+        }
+
+        private static void RegisterSingletonServices(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
         }
     }
 }
