@@ -12,7 +12,8 @@ namespace Weighter.Features
         public override async Task OnNavigatedToAsync(INavigationParameters parameters)
         {
             await base.OnNavigatedToAsync(parameters);
-            await NavigationService.NavigateAsync($"/{nameof(DashboardPage)}");
+            await Task.Delay(5000);
+            var t = await NavigationService.NavigateAsync(nameof(DashboardPage));
         }
     }
 }

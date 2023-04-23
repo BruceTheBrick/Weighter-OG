@@ -35,6 +35,9 @@
 
     <ItemGroup>
         <!-- App Icon -->
+        <MauiImage Include="Resources\Images\appicon.svg">
+          <Color>#FFFFFF</Color>
+        </MauiImage>
         <MauiIcon Include="Resources\Images\AppIcon\appicon.svg">
           <Color>#FFFFFF</Color>
         </MauiIcon>

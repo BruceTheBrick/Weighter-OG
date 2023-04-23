@@ -5,7 +5,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Weighter.Features"
     x:DataType="features:SplashPageViewModel">
-    <Grid>
-        <ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
+    <Grid
+        RowDefinitions="auto, auto"
+        RowSpacing="16"
+        VerticalOptions="Center">
+        <Image
+            Grid.Row="0"
+            HeightRequest="60"
+            Source="appicon.svg"
+            WidthRequest="60" />
+        <ActivityIndicator
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            IsRunning="True" />
     </Grid>
 </ContentPage>
