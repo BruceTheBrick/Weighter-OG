@@ -12,7 +12,7 @@ namespace Weighter
         protected override Window CreateWindow(IActivationState activationState)
         {
             // Workaround for: 'Either set MainPage or override CreateWindow.'??
-            MainPage ??= new SplashPage();
+            MainPage ??= new NavigationPage(new SplashPage());
             return base.CreateWindow(activationState);
         }
     }
