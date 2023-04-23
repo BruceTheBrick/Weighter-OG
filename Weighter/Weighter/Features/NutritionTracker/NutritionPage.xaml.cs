@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 namespace Weighter.Features
 {
     [ExcludeFromCodeCoverage]
-    public partial class DashboardPage
+    public partial class NutritionPage
     {
-        public DashboardPage()
+        public NutritionPage()
         {
             InitializeComponent();
         }

@@ -26,6 +26,8 @@ namespace Weighter
         {
             containerRegistry.RegisterForNavigation<SplashPage, SplashPageViewModel>();
             containerRegistry.RegisterForNavigation<DashboardPage, DashboardPageViewModel>();
+            containerRegistry.RegisterForNavigation<WorkoutPage, WorkoutPageViewModel>();
+            containerRegistry.RegisterForNavigation<NutritionPage, NutritionPageViewModel>();
         }
 
         private static void RegisterServices(IContainerRegistry containerRegistry)
