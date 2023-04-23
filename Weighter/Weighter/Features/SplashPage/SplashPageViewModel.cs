@@ -13,7 +13,7 @@ namespace Weighter.Features
         {
             await base.OnNavigatedToAsync(parameters);
             await Task.Delay(5000);
-            var t = await NavigationService.NavigateAsync(nameof(DashboardPage));
+            var t = await NavigationService.NavigateAsync(NavigationConstants.Dashboard);
         }
     }
 }

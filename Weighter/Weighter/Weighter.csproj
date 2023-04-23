@@ -60,6 +60,10 @@
 
     <ItemGroup>
         <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
