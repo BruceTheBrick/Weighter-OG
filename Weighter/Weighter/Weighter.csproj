@@ -57,17 +57,30 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
         <MauiImage Remove="Resources\Images\Old\**" />
+        
     </ItemGroup>
 
+    <!-- Android-->
+    <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+        <GoogleServicesJson Include="google-services.json" />
+    </ItemGroup>
+
+    <!-- IOS-->
+    <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
+        <BundleResource Include="GoogleService-Info.plist" />
+    </ItemGroup>
+    
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
-        <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Plugin.Firebase" Version="2.0.2" />
+        <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
+        <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     </ItemGroup>
-
+    
     <ItemGroup>
       <None Remove="Weighter.csproj.DotSettings" />
       <None Remove="Resources\Images\Old\**" />
@@ -93,4 +106,7 @@
       <Folder Include="Resources\Images\AppIcon" />
     </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+      <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="118.1.0.2" />
+    </ItemGroup>
 </Project>

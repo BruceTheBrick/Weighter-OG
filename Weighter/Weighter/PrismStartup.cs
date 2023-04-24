@@ -38,6 +38,8 @@ namespace Weighter
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
             containerRegistry.Register<IDeviceInfo, Core.DeviceInfo>();
             containerRegistry.Register<ITaskDelay, TaskDelay>();
+            containerRegistry.Register<IFeatureToggleService, FeatureToggleService>();
+            containerRegistry.Register<IAnalyticsService, AnalyticsService>();
         }
 
         private static void RegisterSingletonServices(IContainerRegistry containerRegistry)
