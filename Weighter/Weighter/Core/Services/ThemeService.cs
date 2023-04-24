@@ -7,6 +7,11 @@ namespace Weighter.Core
     {
         private Theme _theme;
 
+        public ThemeService()
+        {
+            Theme = Theme.System;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Theme Theme

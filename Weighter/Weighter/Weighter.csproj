@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0-android;net6.0-ios;</TargetFrameworks>
+        <TargetFrameworks>net7.0-android;net7.0-ios;</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <RootNamespace>Weighter</RootNamespace>
@@ -60,6 +60,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
         <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
           <PrivateAssets>all</PrivateAssets>

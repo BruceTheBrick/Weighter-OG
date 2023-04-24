@@ -1,6 +1,5 @@
 ﻿using Weighter.Core;
 using Weighter.Features;
-using DeviceInfo = Weighter.Core.DeviceInfo;
 using IDeviceInfo = Weighter.Core.IDeviceInfo;
 using INavigationService = Weighter.Core.INavigationService;
 
@@ -13,7 +12,7 @@ namespace Weighter
             builder
                 .RegisterTypes(RegisterTypes)
                 .RegisterTypes(PlatformInitializer.RegisterTypes)
-                .OnAppStart(NavigationConstants.Startup);
+                .OnAppStart(nameof(SplashPage));
         }
 
         private static void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,6 +27,7 @@ namespace Weighter
             containerRegistry.RegisterForNavigation<DashboardPage, DashboardPageViewModel>();
             containerRegistry.RegisterForNavigation<WorkoutPage, WorkoutPageViewModel>();
             containerRegistry.RegisterForNavigation<NutritionPage, NutritionPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
         }
 
         private static void RegisterServices(IContainerRegistry containerRegistry)
@@ -36,7 +36,7 @@ namespace Weighter
             containerRegistry.Register<IBaseService, BaseService>();
             containerRegistry.Register<INavigationService, NavigationService>();
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
-            containerRegistry.Register<IDeviceInfo, DeviceInfo>();
+            containerRegistry.Register<IDeviceInfo, Core.DeviceInfo>();
             containerRegistry.Register<ITaskDelay, TaskDelay>();
         }
 

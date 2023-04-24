@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Weighter.Features.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:behaviors1="http://prismlibrary.com"
+    xmlns:features="clr-namespace:Weighter.Features"
+    Title="{Binding TabTitle}"
+    x:DataType="features:SettingsPageViewModel"
+    IconImageSource="{Binding TabIcon}">
+
+    <Switch IsToggled="{Binding IsDarkMode}">
+        <Switch.Behaviors>
+            <behaviors1:EventToCommandBehavior Command="{Binding DarkModeToggledCommand}" EventName="Toggled" />
+        </Switch.Behaviors>
+    </Switch>
+</ContentPage>

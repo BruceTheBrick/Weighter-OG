@@ -2,14 +2,11 @@ using Weighter.Core;
 
 namespace Weighter.Features
 {
-    public class DashboardPageViewModel : BasePageViewModel, ITabPage
+    public class DashboardPageViewModel : BaseTabbedPageViewModel
     {
         public DashboardPageViewModel(IBaseService baseService)
-            : base(baseService)
+            : base("Dashboard", "ic_home", baseService)
         {
         }
-
-        public string TabTitle { get; } = "Dashboard";
-        public string TabIcon { get; } = "ic_home";
     }
 }
