@@ -1,19 +1,20 @@
 using Weighter.Core;
+using Debug = System.Diagnostics.Debug;
 
 namespace Weighter.Features
 {
     public class SplashPageViewModel : BasePageViewModel
     {
         private readonly ITaskDelay _taskDelay;
-        private readonly IFeatureToggleService _featureToggleService;
+        private readonly IFirebaseInitService _firebaseInitService;
         public SplashPageViewModel(
-            IFeatureToggleService featureToggleService,
+            IFirebaseInitService firebaseInitService,
             ITaskDelay taskDelay,
             IBaseService baseService)
             : base(baseService)
         {
+            _firebaseInitService = firebaseInitService;
             _taskDelay = taskDelay;
-            _featureToggleService = featureToggleService;
         }
 
         public override async Task OnNavigatedToAsync(INavigationParameters parameters)
@@ -21,13 +22,14 @@ namespace Weighter.Features
             try
             {
                 await base.OnNavigatedToAsync(parameters);
-                await _featureToggleService.Initialise();
+                await _firebaseInitService.Initialize();
                 await _taskDelay.Delay(5000);
                 await NavigationService.NavigateAsync(NavigationConstants.Dashboard);
             }
             catch (Exception e)
             {
-                
+                Debug.WriteLine(e.Message);
+                await NavigationService.NavigateAsync(NavigationConstants.Dashboard);
             }
         }
     }

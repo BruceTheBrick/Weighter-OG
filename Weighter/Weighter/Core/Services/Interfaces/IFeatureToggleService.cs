@@ -2,7 +2,7 @@ namespace Weighter.Core
 {
     public interface IFeatureToggleService
     {
-        public Task Initialise();
+        public Task Initialize();
         public bool IsEnabled(string featureName);
     }
 }

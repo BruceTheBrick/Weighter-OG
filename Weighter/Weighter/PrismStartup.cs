@@ -1,4 +1,5 @@
-﻿using Weighter.Core;
+﻿using Plugin.Firebase.Auth;
+using Weighter.Core;
 using Weighter.Features;
 using IDeviceInfo = Weighter.Core.IDeviceInfo;
 using INavigationService = Weighter.Core.INavigationService;

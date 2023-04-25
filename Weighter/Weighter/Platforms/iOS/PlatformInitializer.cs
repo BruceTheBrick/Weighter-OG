@@ -1,5 +1,5 @@
-using Microsoft.Maui.LifecycleEvents;
-using Plugin.Firebase.Core.Platforms.iOS;
+using Weighter.Core;
+using Weighter.Platforms;
 
 namespace Weighter
 {
@@ -7,20 +7,7 @@ namespace Weighter
     {
         public static void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
-        }
-
-        public static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
-        {
-            builder.ConfigureLifecycleEvents(events =>
-            {
-                events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) =>
-                {
-                    CrossFirebase.Initialize();
-                    return false;
-                }));
-            });
-            return builder;
+            containerRegistry.Register<ICrossFirebaseInitService, CrossFirebaseInitService>();
         }
     }
 }

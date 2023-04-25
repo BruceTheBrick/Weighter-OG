@@ -4,11 +4,10 @@ namespace Weighter.Core
 {
     public class FeatureToggleService : IFeatureToggleService
     {
-        public async Task Initialise()
+        public async Task Initialize()
         {
-            var app = CrossFirebaseRemoteConfig.Current;
-            await CrossFirebaseRemoteConfig.Current.EnsureInitializedAsync();
             await CrossFirebaseRemoteConfig.Current.FetchAndActivateAsync();
+            await CrossFirebaseRemoteConfig.Current.EnsureInitializedAsync();
         }
         
         public bool IsEnabled(string featureName)

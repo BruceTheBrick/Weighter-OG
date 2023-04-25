@@ -1,4 +1,5 @@
-﻿using Plugin.Firebase.Auth;
+﻿using CommunityToolkit.Maui;
+using Plugin.Firebase.Auth;
 
 namespace Weighter
 {
@@ -9,6 +10,7 @@ namespace Weighter
             var builder = MauiApp.CreateBuilder();
             builder
                 .UsePrismApp<App>(PrismStartup.Configure)
+                .UseMauiCommunityToolkit()
                 .RegisterFirebase()
                 .ConfigureFonts(ConfigureFonts);
 
@@ -17,7 +19,6 @@ namespace Weighter
 
         private static MauiAppBuilder RegisterFirebase(this MauiAppBuilder builder)
         {
-            builder.RegisterFirebaseServices();
             builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
             return builder;
         }
