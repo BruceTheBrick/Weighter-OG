@@ -14,8 +14,15 @@ namespace Weighter.Core
         }
         public async Task Initialize()
         {
-            _crossFirebaseInitService.Initialize();
-            await _featureToggleService.Initialize();
+            try
+            {
+                _crossFirebaseInitService.Initialize();
+                await _featureToggleService.Initialize();
+            }
+            catch (Exception e)
+            {
+                
+            }
         }
     }
 }

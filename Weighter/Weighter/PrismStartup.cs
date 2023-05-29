@@ -1,5 +1,4 @@
-﻿using Plugin.Firebase.Auth;
-using Weighter.Core;
+﻿using Weighter.Core;
 using Weighter.Features;
 using IDeviceInfo = Weighter.Core.IDeviceInfo;
 using INavigationService = Weighter.Core.INavigationService;
@@ -41,6 +40,7 @@ namespace Weighter
             containerRegistry.Register<ITaskDelay, TaskDelay>();
             containerRegistry.Register<IFeatureToggleService, FeatureToggleService>();
             containerRegistry.Register<IAnalyticsService, AnalyticsService>();
+            containerRegistry.Register<IFirebaseInitService, FirebaseInitService>();
         }
 
         private static void RegisterSingletonServices(IContainerRegistry containerRegistry)

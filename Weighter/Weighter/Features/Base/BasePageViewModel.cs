@@ -1,9 +1,11 @@
+using PropertyChanged;
 using Weighter.Core;
 using INavigationService = Weighter.Core.INavigationService;
 
 namespace Weighter.Features
 {
-    public class BasePageViewModel : INavigationAware, IInitialize, IInitializeAsync
+    [AddINotifyPropertyChangedInterface]
+    public class BasePageViewModel : INavigationAware, IInitialize, IInitializeAsync, IPageLifecycleAware
     {
         public BasePageViewModel(IBaseService baseService)
         {
@@ -40,6 +42,26 @@ namespace Weighter.Features
             return Task.CompletedTask;
         }
 
+        public void OnAppearing()
+        {
+            _ = OnAppearingAsync();
+        }
+
+        public void OnDisappearing()
+        {
+            _ = OnDisappearingAsync();
+        }
+
+        public virtual Task OnAppearingAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        public virtual Task OnDisappearingAsync()
+        {
+            return Task.CompletedTask;
+        }
+        
         public INavigationService NavigationService { get; }
         public IAccessibilityService AccessibilityService { get; }
     }

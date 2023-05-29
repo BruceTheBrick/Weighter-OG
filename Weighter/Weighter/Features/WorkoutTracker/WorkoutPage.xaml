@@ -5,7 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Weighter.Features"
     Title="{Binding TabTitle}"
-    x:DataType="features:NutritionPageViewModel"
+    x:DataType="features:WorkoutPageViewModel"
     IconImageSource="{Binding TabIcon}">
-    <Label Text="Workout tracking" />
+    <StackLayout>
+        <Label Text="Workout tracking" />
+        <CheckBox IsChecked="{Binding IsToggleWorking}" />
+    </StackLayout>
 </ContentPage>

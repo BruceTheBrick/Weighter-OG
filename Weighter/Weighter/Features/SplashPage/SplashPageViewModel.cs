@@ -1,5 +1,4 @@
 using Weighter.Core;
-using Debug = System.Diagnostics.Debug;
 
 namespace Weighter.Features
 {
@@ -19,18 +18,9 @@ namespace Weighter.Features
 
         public override async Task OnNavigatedToAsync(INavigationParameters parameters)
         {
-            try
-            {
-                await base.OnNavigatedToAsync(parameters);
-                await _firebaseInitService.Initialize();
-                await _taskDelay.Delay(5000);
-                await NavigationService.NavigateAsync(NavigationConstants.Dashboard);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                await NavigationService.NavigateAsync(NavigationConstants.Dashboard);
-            }
+            await base.OnNavigatedToAsync(parameters);
+            await _firebaseInitService.Initialize();
+            await NavigationService.NavigateAsync(NavigationConstants.Dashboard);
         }
     }
 }

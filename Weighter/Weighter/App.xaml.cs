@@ -15,6 +15,12 @@ namespace Weighter
             _themeService.PropertyChanged += OnThemeChanged;
         }
 
+        protected override async void OnInitialized()
+        {
+            base.OnInitialized();
+            await NavigationService.NavigateAsync($"/{nameof(SplashPage)}");
+        }
+
         private void OnThemeChanged(object sender, PropertyChangedEventArgs eventArgs)
         {
             if (eventArgs.PropertyName == nameof(_themeService.Theme))
@@ -25,20 +31,7 @@ namespace Weighter
 
         private void UpdateTheme()
         {
-            var theme = _themeService.Theme;
-            if (theme.AppTheme == null)
-            {
-                return;
-            }
-
-            UserAppTheme = theme.AppTheme;
-        }
-
-        protected override Window CreateWindow(IActivationState activationState)
-        {
-            // Workaround for: 'Either set MainPage or override CreateWindow.'??
-            MainPage ??= new NavigationPage(new SplashPage());
-            return base.CreateWindow(activationState);
+            UserAppTheme = _themeService.Theme.AppTheme;
         }
     }
 }

@@ -28,6 +28,11 @@
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <MtouchExtraArgs>--interpreter</MtouchExtraArgs>
+      <CodesignKey>iPhone Developer</CodesignKey>
+    </PropertyGroup>
+
     <ItemGroup>
         <!-- App Icon -->
         <MauiImage Include="Resources\Images\appicon.svg">
@@ -56,53 +61,38 @@
     </ItemGroup>
 
     <!-- Android-->
-    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+    <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
         <GoogleServicesJson Include="google-services.json" />
-        <PackageReference Include="Plugin.Firebase" Version="2.0.0" />
+        <PackageReference Include="Plugin.Firebase" Version="2.0.3" />
         <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0.1" />
         <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk7" Version="1.8.0.1" ExcludeAssets="build;buildTransitive" />
         <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.8.0.1" ExcludeAssets="build;buildTransitive" />
     </ItemGroup>
 
     <!-- IOS-->
-    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-ios'">
+    <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
         <BundleResource Include="GoogleService-Info.plist" />
-        <PackageReference Include="Plugin.Firebase" Version="2.0.0" />
+        <PackageReference Include="Plugin.Firebase" Version="2.0.3" />
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Plugin.Firebase" Version="2.0.2" />
         <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
+        <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
         <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     </ItemGroup>
-    
+
     <ItemGroup>
       <None Remove="Weighter.csproj.DotSettings" />
       <None Remove="Resources\Images\Old\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="Resources\Images\Old\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <EmbeddedResource Remove="Resources\Images\Old\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <MauiXaml Remove="Resources\Images\Old\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <MauiCss Remove="Resources\Images\Old\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Resources\Images\AppIcon" />
     </ItemGroup>
 </Project>
