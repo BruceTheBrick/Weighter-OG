@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net7.0-android;net7.0-ios;</TargetFrameworks>
-        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net7.0;net7.0-android;net7.0-ios</TargetFrameworks>
+        <OutputType Condition="'$(TargetFramework)' != 'net7.0'">Exe</OutputType>
+
         <RootNamespace>Weighter</RootNamespace>
         <UseMaui>true</UseMaui>
         <SingleProject>true</SingleProject>
@@ -31,8 +32,18 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <MtouchExtraArgs>--interpreter</MtouchExtraArgs>
       <CodesignKey>iPhone Developer</CodesignKey>
+      <AndroidSupportedAbis>armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
+      <MtouchLink>Full</MtouchLink>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+      <CreatePackage>false</CreatePackage>
+      <MtouchInterpreter>-all</MtouchInterpreter>
+      <MtouchArch>ARMv7</MtouchArch>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
     <ItemGroup>
         <!-- App Icon -->
         <MauiImage Include="Resources\Images\appicon.svg">
@@ -63,16 +74,26 @@
     <!-- Android-->
     <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
         <GoogleServicesJson Include="google-services.json" />
-        <PackageReference Include="Plugin.Firebase" Version="2.0.3" />
         <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0.1" />
         <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk7" Version="1.8.0.1" ExcludeAssets="build;buildTransitive" />
         <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.8.0.1" ExcludeAssets="build;buildTransitive" />
     </ItemGroup>
 
+    <!-- Android -->
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net7.0-android')) != true">
+        <Compile Remove="**\Android\**\*.cs" />
+        <None Include="**\Android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+
     <!-- IOS-->
     <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
         <BundleResource Include="GoogleService-Info.plist" />
-        <PackageReference Include="Plugin.Firebase" Version="2.0.3" />
+    </ItemGroup>
+
+    <!-- iOS -->
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net7.0-ios')) != true">
+        <Compile Remove="**\iOS\**\*.cs" />
+        <None Include="**\iOS\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     </ItemGroup>
     
     <ItemGroup>
@@ -81,6 +102,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Plugin.Firebase" Version="2.0.3" />
         <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.191-beta" />
         <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
         <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
@@ -95,4 +117,45 @@
       <MauiCss Remove="Resources\Images\Old\**" />
       <Folder Include="Resources\Images\AppIcon" />
     </ItemGroup>
+    
+<!--    ITEMS BELOW ARE TEMPORARY FIX FOR PLUGIN.FIREBASE INCOMPATIBILITY WITH .NET7-->
+    <PropertyGroup>
+        <!-- Properties used to strip bitcode from frameworks when using Visual Studio for Mac -->
+        <_StripBitcodeFromFrameworksMasterAfterTargets Condition="'$(OS)'=='Unix'">_ExpandNativeReferences</_StripBitcodeFromFrameworksMasterAfterTargets>
+        <_StripBitcodeFromFrameworksMasterDependsOnTargets Condition="'$(OS)'=='Unix'">_StripBitcodeFromFrameworksOnMac</_StripBitcodeFromFrameworksMasterDependsOnTargets>
+
+        <!-- Properties used to strip bitcode from frameworks when using Visual Studio for Windows -->
+        <_StripBitcodeFromFrameworksMasterAfterTargets Condition="'$(OS)'!='Unix'">_ComputeFrameworkFilesToPublish</_StripBitcodeFromFrameworksMasterAfterTargets>
+        <_StripBitcodeFromFrameworksMasterDependsOnTargets Condition="'$(OS)'!='Unix'">_StripBitcodeFromFrameworksOnWindows</_StripBitcodeFromFrameworksMasterDependsOnTargets>
+    </PropertyGroup>
+
+    <Target Name="_StripBitcodeFromFrameworksMasterTarget"
+            Condition="'$(_StripBitcodeFromFrameworksMasterDependsOnTargets)'!='' AND @(_FrameworkNativeReference->Count()) != 0"
+            AfterTargets="$(_StripBitcodeFromFrameworksMasterAfterTargets)"
+            DependsOnTargets="$(_StripBitcodeFromFrameworksMasterDependsOnTargets)" />
+
+    <Target Name="_StripBitcodeFromFrameworksOnMac"
+            Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True') AND '$(_SdkIsSimulator)'=='False'">
+
+        <!-- Find the bitcode_strip command -->
+        <Exec Command="xcrun -find bitcode_strip" ConsoleToMSBuild="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="_BitcodeStripCommand" />
+        </Exec>
+
+        <!-- Strip the bitcode from frameworks -->
+        <Exec Command="$(_BitcodeStripCommand) %(_FrameworkNativeReference.Identity) -r -o %(_FrameworkNativeReference.Identity)" />
+    </Target>
+
+    <Target Name="_StripBitcodeFromFrameworksOnWindows"
+            Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True') AND '$(_SdkIsSimulator)'=='False' AND '$(IsMacEnabled)'=='true'">
+
+        <!-- Strip the bitcode from frameworks -->
+        <Exec SessionId="$(BuildSessionId)"
+              Command="&quot;%24(xcrun -find bitcode_strip)&quot; %(_FrameworkNativeReference.Identity) -r -o %(_FrameworkNativeReference.Identity)" />
+
+        <CopyFileFromBuildServer
+                SessionId="$(BuildSessionId)"
+                File="%(_FrameworkNativeReference.Identity)"
+                TargetFile="%(_FrameworkNativeReference.Identity)" />
+    </Target>
 </Project>

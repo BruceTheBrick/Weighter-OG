@@ -11,7 +11,7 @@ namespace Weighter
         {
             builder
                 .RegisterTypes(RegisterTypes)
-                .RegisterTypes(PlatformInitializer.RegisterTypes)
+                // .RegisterTypes(PlatformInitializer.RegisterTypes)
                 .OnAppStart(nameof(SplashPage));
         }
 

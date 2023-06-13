@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{B30A4640-9C34-4712-8492-9E2DDCB80EDD}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Weighter" expanded="True">
+            <Node name="Weighter" expanded="True">
+              <Node name="Features" expanded="True">
+                <Node name="Dashboard" expanded="True" />
+              </Node>
+              <Node name="Platforms" expanded="True" />
+              <Node name="MauiProgram.cs" selected="True" />
+            </Node>
+            <Node name="Weighter.Tests" expanded="True">
+              <Node name="Base" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Weighter PreferredExecutionTarget="MonoDevelop.Default" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
